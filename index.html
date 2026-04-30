@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Librion Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <h2>📚 Librion</h2>
+  <a href="index.html">Dashboard</a>
+  <a href="library.html">Library</a>
+</nav>
+
+<div class="container">
+  <h1>Dashboard</h1>
+
+  <div class="card">
+    <h3>Total Books</h3>
+    <p id="total">0</p>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html><!DOCTYPE html>
+<html>
+<head>
+  <title>Librion Library</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <h2>📚 Librion</h2>
+  <a href="index.html">Dashboard</a>
+  <a href="library.html">Library</a>
+</nav>
+
+<div class="container">
+  <h1>Library</h1>
+
+  <input id="search" placeholder="Search books...">
+
+  <div class="add-box">
+    <input id="title" placeholder="Title">
+    <input id="author" placeholder="Author">
+    <button onclick="addBook()">Add</button>
+  </div>
+
+  <div id="book-list"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

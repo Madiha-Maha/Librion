@@ -1,0 +1,81 @@
+let books = JSON.parse(localStorage.getItem("books")) || [];
+
+// Save
+function save() {
+  localStorage.setItem("books", JSON.stringify(books));
+}
+
+// Update dashboard
+function updateDashboard() {
+  const total = document.getElementById("total");
+  if (total) {
+    total.innerText = books.length;
+  }
+}
+
+// Display books
+function displayBooks() {
+  const list = document.getElementById("book-list");
+  if (!list) return;
+
+  list.innerHTML = "";
+
+  books.forEach((b, i) => {
+    const div = document.createElement("div");
+    div.className = "book";
+
+    div.innerHTML = `
+      <h3>${b.title}</h3>
+      <p>${b.author}</p>
+      <button onclick="deleteBook(${i})">Delete</button>
+    `;
+
+    list.appendChild(div);
+  });
+}
+
+// Add book
+function addBook() {
+  const title = document.getElementById("title").value;
+  const author = document.getElementById("author").value;
+
+  if (!title || !author) return;
+
+  books.push({ title, author });
+  save();
+  displayBooks();
+  updateDashboard();
+
+  document.getElementById("title").value = "";
+  document.getElementById("author").value = "";
+}
+
+// Delete
+function deleteBook(i) {
+  books.splice(i, 1);
+  save();
+  displayBooks();
+  updateDashboard();
+}
+
+// Search
+function setupSearch() {
+  const search = document.getElementById("search");
+  if (!search) return;
+
+  search.addEventListener("input", function () {
+    const val = this.value.toLowerCase();
+    document.querySelectorAll(".book").forEach(card => {
+      card.style.display = card.innerText.toLowerCase().includes(val)
+        ? "block"
+        : "none";
+    });
+  });
+}
+
+// Init
+window.onload = function () {
+  displayBooks();
+  updateDashboard();
+  setupSearch();
+};
